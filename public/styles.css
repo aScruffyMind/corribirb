@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #fff;
+    background-color: #000;
+}
+
+.container {
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    max-width: 480px;
+    height: 100vh;
+}
+
+.background {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.70), rgba(0, 0, 0, 0.70)), url(/public/img/corribirb.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+    background-size: cover;
+}
+
+.row {
+    margin: 25px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#tracker {
+    border: 1px solid red;
+    background-color: red;
+    border-radius: 175px;
+    padding: 45px 65px;
+    margin: 10px;
+    font-size: 400%;
+}
+
+p {
+    width: 100%;
+    text-align: center;
+}
+
+.submit {
+    border: 1px solid #aaa;
+    border-radius: 100px;
+    background-color: #999;
+    padding: 10px 60px;
+    margin: 10px;
+    font-size: 150%;
+    color: #222;
+}
+
+.counter p {
+    font-size: 300%;
+    margin: 0 20px;
+    color: #aaa;
+}
