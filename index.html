@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,18 +9,33 @@
     <link rel="stylesheet" href="public/styles.css">
     <script defer src="public/script.js"></script>
 </head>
-<body>
-    <div class="container background">
+
+<body class="background">
+    <div class="done hidden">
+        <h1>HI THERE!</h1>
+    </div>
+    <div class="container">
         <div class="row">
-            <h1>Corribird Feeding Tracker</h1>
+            <h1>Corribirb Feeding Tracker</h1>
         </div>
         <div class="row">
             <p>Tap the button for each full syringe Corri takes. Press done to log any partials.</p>
         </div>
         <div class="row counter">
-            <p id="minus" class="subtract">-</p>
+            <p id="minus" class="subtract">&ndash;</p>
             <h2 id="tracker" class="add">0</h2>
             <p id="plus" class="add">+</p>
+        </div>
+        <div class="row partials hidden">
+            <div class="partials-box ">
+                <h3>Did Corri eat any partials?</h3>
+                <div class="row">
+                    <div class="partial-button">1/4</div>
+                    <div class="partial-button">1/2</div>
+                    <div class="partial-button">3/4</div>
+                </div>
+                <button>This button does nothing yet</button>
+            </div>
         </div>
 
         <div class="row">
@@ -30,4 +46,5 @@
         </footer>
     </div>
 </body>
+
 </html>

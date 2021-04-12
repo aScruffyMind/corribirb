@@ -9,6 +9,23 @@ const counter = (() => {
     }
 })();
 
+function doneFeeding() {
+    console.log('click!');
+    
+    let tracker = document.querySelector('.counter');
+    let partials = document.querySelector('.partials');
+    tracker.classList.toggle('hidden');
+    partials.classList.toggle('hidden');
+
+
+    // if (tracker.classList.contains('hidden') && !partialBox.classList.contains('hidden')) {
+    //     tracker.classList.toggle('hidden');
+
+        
+    // }
+}
+
 document.getElementById('tracker').addEventListener('click', counter);
 document.getElementById('plus').addEventListener('click', counter);
 document.getElementById('minus').addEventListener('click', counter);
+document.querySelector('.submit').addEventListener('click', doneFeeding);
