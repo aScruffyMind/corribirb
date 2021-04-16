@@ -18,6 +18,14 @@ app.use(express.static("public"));
 mongoose.connect(mongoUrl, {
     useUnifiedTopology: true,
     useNewUrlParser: true
+})
+.then(() => {
+    console.log('connected to db!');
+    
+})
+.catch((err) => {
+    console.log('something is wrong with db connection');
+    
 });
 
 const feedingSchema = new Schema({
@@ -45,6 +53,14 @@ app.get('/', function(req, res) {
 
 app.get('/feeding', function(req, res) {
     res.render('feeding');
+});
+
+app.get('/weight', function (req, res) {
+    res.render('weight');
+});
+
+app.get('/stats', function (req, res) {
+    res.render('stats');
 });
 
 let port = process.env.PORT;

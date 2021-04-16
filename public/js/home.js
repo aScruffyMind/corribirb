@@ -13,7 +13,7 @@ options[2].addEventListener('click', function () {
 });
 
 function load(p) {
-    const page = p + '.html';
+    const page = '/' + p;
     window.location.href = page;
     return;
 }

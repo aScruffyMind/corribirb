@@ -28,21 +28,12 @@ function doneFeeding() { // All checks out
 }
 
 function submit() {
-    console.log(totalMls.innerText);
-    
-    // const total2 = this.innerText.replace(/^\D+/g, ''); // replace all leading non-digits with nothing
-    // console.log(total2);
-    
     const timestamp = new Date();
     alert(`Saving ${totalMls.innerText} mls at ${timestamp.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'})}`);
-    
-       
+    window.location.href = '/';
+
     // this is where total will be sent to log into mongoDB
-
 }
-
-
-
 
 tenthsButtons.forEach(num => {
     num.addEventListener('click', function () {
