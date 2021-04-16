@@ -42,3 +42,16 @@ app.get('/favicon.ico', function (req, res) {
 app.get('/', function(req, res) {
     res.render('home');
 });
+
+app.get('/feeding', function(req, res) {
+    res.render('feeding');
+});
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3821;
+}
+
+app.listen(port, function () {
+    console.log("Server started on port " + port);
+});

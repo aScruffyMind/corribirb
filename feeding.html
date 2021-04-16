@@ -6,50 +6,59 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corribirb Feeding Tracker</title>
-    <link rel="stylesheet" href="public/styles.css">
-    <script defer src="public/script.js"></script>
+    <link rel="stylesheet" href="public/css/styles.css">
+    <script defer src="public/js/feeding.js"></script>
 </head>
 
 <body class="background">
-    <div class="done hidden">
-        <h1>HI THERE!</h1>
-    </div>
     <div class="container">
         <div class="row">
-            <h1>Corribirb Feeding Tracker</h1>
-        </div>
-        <div class="row">
-            <p>Tap the button for each full syringe Corri takes. Press done to log any partials.</p>
+            <header>
+                <img src="/public/img/corri-logo.png" alt="">
+                <p class="instructions">Tap the button for each full syringe Corri takes. Press done to log any partials.</p>
+            </header>
         </div>
         <div class="row counter">
             <p id="minus" class="subtract">&ndash;</p>
-            <h2 id="tracker" class="add">0</h2>
+            <h2 id="count-button" class="add">0</h2>
             <p id="plus" class="add">+</p>
-        </div>
-        <div class="row partials hidden">
-
-            <div class="partials-box">
-                <div class="row">
-                    <div class="partial-button">1</div>
-                    <div class="partial-button">2</div>
-                    <div class="partial-button">3</div>
-                </div>
-                <div class="row">
-                    <div class="partial-button">1</div>
-                    <div class="partial-button">2</div>
-                    <div class="partial-button">3</div>
-                </div>
-                <div class="row">
-                    <div class="partial-button">1</div>
-                    <div class="partial-button">2</div>
-                    <div class="partial-button">3</div>
-                </div>
-            </div>
         </div>
 
         <div class="row">
-            <span class="submit">Done</span>
+            <span id="done-button" class="button">Done</span>
         </div>
+
+        <div class="tenths-section hidden">
+            <h1>Any partial mls?</h1>
+            <div class="num-pad">
+                <div class="row">
+                    <div class="tenth-button">.1</div>
+                    <div class="tenth-button">.2</div>
+                    <div class="tenth-button">.3</div>
+                </div>
+                <div class="row">
+                    <div class="tenth-button">.4</div>
+                    <div class="tenth-button">.5</div>
+                    <div class="tenth-button">.6</div>
+                </div>
+                <div class="row">
+                    <div class="tenth-button">.7</div>
+                    <div class="tenth-button">.8</div>
+                    <div class="tenth-button">.9</div>
+                </div>
+                <div class="row">
+                    <div class="tenth-button">0</div>
+                </div>
+            </div>
+            <div class="row">
+                <form action="/feeding" method="POST">
+                    <input id="mls" type="hidden" value="5">
+                    <div id="submit-button" class="done button">Save <span id="total"></span> mls</div>
+                </form>
+            </div>
+        </div>
+
+
         <footer class="row">
             <p>&copy; 2021 Scruffy Minds Web Design</p>
         </footer>
