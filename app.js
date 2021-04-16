@@ -18,6 +18,14 @@ app.use(express.static("public"));
 mongoose.connect(mongoUrl, {
     useUnifiedTopology: true,
     useNewUrlParser: true
+})
+.then(() => {
+    console.log('connected to db!');
+    
+})
+.catch((err) => {
+    console.log('something is wrong with db connection');
+    
 });
 
 const feedingSchema = new Schema({
@@ -41,4 +49,25 @@ app.get('/favicon.ico', function (req, res) {
 
 app.get('/', function(req, res) {
     res.render('home');
+});
+
+app.get('/feeding', function(req, res) {
+    res.render('feeding');
+});
+
+app.get('/weight', function (req, res) {
+    res.render('weight');
+});
+
+app.get('/stats', function (req, res) {
+    res.render('stats');
+});
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+    port = 3821;
+}
+
+app.listen(port, function () {
+    console.log("Server started on port " + port);
 });
