@@ -3,7 +3,7 @@ const tenths = d.querySelector('.tenths-section');
 const tenthsButtons = d.querySelectorAll('.tenth-button');
 const submitButton = d.getElementById('submit-button');
 const totalMls = d.getElementById('total');
-
+const closeButton = d.querySelector('.close-button');
 const counter = d.querySelector('.counter');
 const tally = d.getElementById('count-button');
 const plus = d.getElementById('plus');
@@ -30,11 +30,14 @@ function doneFeeding() {
     tenths.classList.toggle('hidden');
 }
 
-function submit() {
-    // alert(`Saving ${totalMls.innerText} mls at ${timestamp.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'})}`);
-    window.location.href = '/';
+function goBack() {
+    counter.classList.toggle('hidden');
+    tenths.classList.toggle('hidden');
+}
+
+function saveIt() {
+    submitButton.removeEventListener('click', saveIt, false);
     logFeeding.submit();
-    // this is where total will be sent to log into mongoDB
 }
 
 tenthsButtons.forEach(num => {
@@ -59,4 +62,5 @@ tally.addEventListener('click', count);
 plus.addEventListener('click', count);
 minus.addEventListener('click', count);
 document.getElementById('done-button').addEventListener('click', doneFeeding);
-submitButton.addEventListener('click', submit);
+submitButton.addEventListener('click', saveIt);
+closeButton.addEventListener('click', goBack);
