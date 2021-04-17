@@ -15,45 +15,69 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
-mongoose.connect(mongoUrl, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
-})
-.then(() => {
-    console.log('connected to db!');
-    
-})
-.catch((err) => {
-    console.log('something is wrong with db connection');
-    
-});
+function mongo(state) {
+    if (state === 'connect') {
+    mongoose.connect(mongoUrl, {
+            useUnifiedTopology: true,
+            useNewUrlParser: true
+        })
+        .then(() => {
+            console.log('connected to db!');
+        })
+        .catch((err) => {
+            console.log('something is wrong with db connection');
+        });
+    } else if (state === 'close') {
+        mongoose.connection.close();
+    }
+}
 
 const feedingSchema = new Schema({
-    date: Date,
+    timestamp: Date,
     mls: Number
 });
 
 const weightSchema = new Schema({
     date: Date,
-    mls: Number
+    weight: Number
 });
 
-const feeding = mongoose.model('Feeding', feedingSchema);
-const weight = mongoose.model('Weight', feedingSchema);
+const Feeding = mongoose.model('Feeding', feedingSchema);
+const Weight = mongoose.model('Weight', feedingSchema);
 
-console.log('so far so good!');
-
+/********** ROUTES **********/
 app.get('/favicon.ico', function (req, res) {
     console.log('Caught another favicon.ico!');
 });
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     res.render('home');
 });
 
-app.get('/feeding', function(req, res) {
-    res.render('feeding');
-});
+app.route('/feeding')
+    .get(function (req, res) {
+        res.render('feeding');
+    })
+    .post(function (req, res) {
+        mongo('connect');
+        const timestamp = new Date();
+        const mls = req.body.finaltotal;
+        const feeding = new Feeding({
+            mls: mls,
+            timestamp: timestamp,
+        });
+        const title = 'Feeding Entry Saved';
+        const message = `You have logged ${mls}&nbsp;mls to the database at ${timestamp.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'})}!`;
+        feeding.save((err) => {
+            if (!err) {
+                mongoose.connection.close();
+                res.render('success', {
+                    title: title,
+                    message: message
+                });
+            } else res.send('There was an error in saving to the database. Please use the back button and try again.');
+        });
+    });
 
 app.get('/weight', function (req, res) {
     res.render('weight');
@@ -62,6 +86,10 @@ app.get('/weight', function (req, res) {
 app.get('/stats', function (req, res) {
     res.render('stats');
 });
+
+app.get('/success', function (req, res) {
+    res.render('success');
+})
 
 let port = process.env.PORT;
 if (port == null || port == "") {

@@ -9,8 +9,11 @@ const tally = d.getElementById('count-button');
 const plus = d.getElementById('plus');
 const minus = d.getElementById('minus');
 const doneButton = d.getElementById('done-button');
+const finalTotal = d.getElementById('mls');
 
-const count = (() => { // This all checks out
+const logFeeding = d.getElementById('logfeeding');
+
+const count = (() => {
     let total = 0;
     return function () {
         let operator = this.className;
@@ -21,17 +24,16 @@ const count = (() => { // This all checks out
     };
 })();
 
-function doneFeeding() { // All checks out
+function doneFeeding() {
     totalMls.innerHTML = count();
     counter.classList.toggle('hidden');
     tenths.classList.toggle('hidden');
 }
 
 function submit() {
-    const timestamp = new Date();
-    alert(`Saving ${totalMls.innerText} mls at ${timestamp.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'})}`);
+    // alert(`Saving ${totalMls.innerText} mls at ${timestamp.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'})}`);
     window.location.href = '/';
-
+    logFeeding.submit();
     // this is where total will be sent to log into mongoDB
 }
 
@@ -47,6 +49,7 @@ tenthsButtons.forEach(num => {
             this.classList.add('mls-selected');
         } else this.classList.add('mls-selected');
         totalMls.innerHTML = `${count()}${tenths}`;
+        finalTotal.value = `${count()}${tenths}`
 
     });
 });
