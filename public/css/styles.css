@@ -145,7 +145,7 @@ p {
 }
 
 .mls-selected {
-    background-color: #489b48a9;
+    background-color: #489b48a9 !important;
     color: #fff;
 }
 

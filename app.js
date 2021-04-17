@@ -65,15 +65,16 @@ app.route('/feeding')
         const feeding = new Feeding({
             mls: mls,
             timestamp: timestamp,
-        });
+        });   
         const title = 'Feeding Entry Saved';
-        const message = `You have logged ${mls}&nbsp;mls to the database at ${timestamp.toLocaleTimeString([], {hour: 'numeric', minute: '2-digit'})}!`;
+        const message = `${mls}&nbsp;mls logged at <span id="timestamp">[timestamp]</span>.`;
         feeding.save((err) => {
             if (!err) {
                 mongoose.connection.close();
                 res.render('success', {
                     title: title,
-                    message: message
+                    message: message,
+                    timestamp: timestamp
                 });
             } else res.send('There was an error in saving to the database. Please use the back button and try again.');
         });
