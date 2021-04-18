@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&family=New+Tegomin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&family=New+Tegomin&family=Space+Mono:ital@0;1&display=swap');
 
 * {
     box-sizing: border-box;
@@ -44,6 +44,7 @@ header img {
 p {
     width: 85%;
     text-align: center;
+    margin: 10px auto;
 }
 
 .background {
@@ -108,13 +109,15 @@ p {
 }
 
 .fenster {
+    display: flex;
+    justify-content: flex-start;
     margin: auto;
     padding: 10px;
-    width: 80%;
-    background-color: rgba(230, 230, 230, 0.945);
+    width: 95% !important;
+    background-color: rgba(230, 230, 230, 0.9);
     color: #000;
     border-radius: 15px;
-    flex: 1;
+    /* flex: 1; */
 }
 
 .fenster>* {
@@ -135,7 +138,7 @@ p {
 }
 
 .instructions {
-    margin: auto;
+    margin: auto !important;
     text-align: center;
 }
 
@@ -147,7 +150,12 @@ p {
 .mls-selected {
     background-color: #489b48a9 !important;
     color: #fff;
+    /* transition: color .1s, background-color .1s; */
 }
+
+.selected {
+    background-color: #489b48a9 !important;
+ }
 
 .tenths-section {
     position: absolute;
@@ -168,7 +176,7 @@ p {
 }
 
 .tenth-button {
-    background-color: rgb(211, 211, 211);
+    background-color: rgb(219, 219, 219);
     margin: 10px 10px;
     height: 65px;
     width: 65px;
@@ -199,6 +207,7 @@ p {
 }
 
 .row {
+    position: relative;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
@@ -237,3 +246,17 @@ p {
     width: 95%;
     margin-bottom: 15px;
 }
+
+textarea {
+    font-style: italic;
+    font-family: 'Space Mono', monospace;
+    font-size: 290%;
+    padding-top: 3px;
+    width: 70%;
+    height: 70px;
+    line-height: 3.5rem;
+    margin: 5px;
+    text-align: center;
+    resize: none;
+}
+
