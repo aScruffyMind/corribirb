@@ -12,9 +12,51 @@
 
 <body class="background">
     <div class="container">
-        <div class="column full-page">
-            <h1>Weight coming soon!</h1>
+        <div class="row">
+            <header>
+                <img src="img/corri-logo.png" alt="">
+            </header>
         </div>
+        <div class="row">
+            <div class="column fenster num-pad">
+                <div class="row">
+                    <p>Log Corri's weight in grams</p>
+                </div>
+                <div class="row">
+                    <textarea readonly name="wight-display" class="all-weight"></textarea>
+                </div>
+                <div class="row">
+                    <div class="tenth-button">1</div>
+                    <div class="tenth-button">2</div>
+                    <div class="tenth-button">3</div>
+                </div>
+                <div class="row">
+                    <div class="tenth-button">4</div>
+                    <div class="tenth-button">5</div>
+                    <div class="tenth-button">6</div>
+                </div>
+                <div class="row">
+                    <div class="tenth-button">7</div>
+                    <div class="tenth-button">8</div>
+                    <div class="tenth-button">9</div>
+                </div>
+                <div class="row">
+                    <div class="tenth-button">⬅︎</div>
+                    <div class="tenth-button">0</div>
+                    <div class="tenth-button">×</div>
+                </div>
+                <div class="row">
+                    <form id="logweight" action="/weight" method="POST">
+                        <input id="weight" name="weight" type="hidden" value="">
+                        <div id="submit-button" class="done button">Save <span class="all-weight">63</span></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer class="row">
+            <p>&copy; 2021 Scruffy Minds Web Design</p>
+        </footer>
     </div>
 </body>
+
 </html>
