@@ -32,6 +32,8 @@ function mongo(state) {
     }
 }
 
+// mongo('connect');
+
 const feedingSchema = new Schema({
     timestamp: Date,
     mls: Number
@@ -107,7 +109,15 @@ app.route('/weight')
 });
 
 app.get('/stats', function (req, res) {
-    res.render('stats');
+    mongo('connect')
+    Feeding.find({}, function (err, foundItems) {
+        // console.log(foundItems);
+        mongo('close');
+        res.render('stats', {
+            dbfeedings: foundItems
+        });
+    });
+    
 });
 
 app.get('/success', function (req, res) {

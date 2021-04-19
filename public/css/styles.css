@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&family=New+Tegomin&family=Space+Mono:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;500&family=New+Tegomin&family=Roboto+Mono:wght@100;300&display=swap');
 
 * {
     box-sizing: border-box;
@@ -82,7 +82,7 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 95%;
+    width: 100%;
 }
 
 .container {
@@ -94,7 +94,7 @@ p {
     justify-content: space-between;
     align-items: center;
     max-width: 480px;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .counter {
@@ -248,8 +248,9 @@ p {
 }
 
 textarea {
-    font-style: italic;
-    font-family: 'Space Mono', monospace;
+    /* font-style: italic; */
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
     font-size: 290%;
     padding-top: 3px;
     width: 70%;
@@ -260,3 +261,84 @@ textarea {
     resize: none;
 }
 
+.tab {
+    width: 49%;
+    border: 1px solid #ccc;
+    background-color: rgb(255, 255, 255, 0.85);
+    color: #444;
+    padding: 7px 15px;
+    font-weight: 300;
+    font-size: 140%;
+}
+
+.tab-selected {
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    background-color: rgb(255, 255, 255, 0.95);
+}
+
+.table {
+    background-color: rgb(255, 255, 255, 0.95);
+    width: 98% !important;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    font-size: 120%;
+}
+
+.table-data {
+    display: flex;
+    justify-content: space-between;
+    padding: 3px 15px;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+    color: #000;
+    
+}
+
+.table-data:last-child {
+    border: 0;
+    padding-bottom: 10px;
+}
+
+.table-footer {
+    display: flex;
+    justify-content: center;
+    padding: 4px 18px;
+    border: 1px solid #ccc;
+    background-color: rgba(163, 163, 163, 0.80);
+    width: 98%;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 140%;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, .15);
+}
+
+.time {
+    text-align: right;
+    width: 100px;
+}
+
+.value {
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+}
+
+.data-header {
+    width: 100%;
+    background-color: #489b48a9;
+    font-size: 90%;
+    /* margin-top: 20px; */
+    padding: 3px;
+    color: #fff;
+    text-shadow: 1px 1px 1px #1d3e1d7c;
+
+}
+
+.day {
+    margin-top: 20px;
+}
+
+#weights {
+    padding-top: 10px;
+}
