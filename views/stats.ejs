@@ -118,18 +118,11 @@
         </div>
     </div>
 
-    
-    <%dbfeedings.forEach((x, i) => {%>
-        <p><%= `Item #${i}: ${x}` %>;</p>
-    <% console.log(typeof dbfeedings) %>
-    <%});%>
 
     <script>
         const dbfeedings = <%- JSON.stringify(dbfeedings)%>;
-        dbfeedings.forEach((x, i) => {
-            console.log(x);
-            
-        });
+        const dbweights = <%- JSON.stringify(dbweights)%>;
+
     </script>
 
 </body>

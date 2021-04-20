@@ -110,12 +110,17 @@ app.route('/weight')
 
 app.get('/stats', function (req, res) {
     mongo('connect')
-    Feeding.find({}, function (err, foundItems) {
-        // console.log(foundItems);
-        mongo('close');
-        res.render('stats', {
-            dbfeedings: foundItems
+    Feeding.find({}, function (err, foundFeedings) {
+        // console.log(foundFeedings);
+        Weight.find({}, function(err, foundWeights) {
+            // console.log(foundWeights);
+            mongo('close');
+            res.render('stats', {
+                dbfeedings: foundFeedings,
+                dbweights: foundWeights
+            });
         });
+
     });
     
 });
