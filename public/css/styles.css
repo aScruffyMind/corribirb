@@ -336,6 +336,10 @@ textarea {
 }
 
 .day {
+    margin-top: 10px;
+}
+
+.day:first-child {
     margin-top: 20px;
 }
 

@@ -116,8 +116,8 @@ app.get('/stats', function (req, res) {
             // console.log(foundWeights);
             mongo('close');
             res.render('stats', {
-                dbfeedings: foundFeedings,
-                dbweights: foundWeights
+                feedingData: foundFeedings,
+                weightData: foundWeights
             });
         });
 

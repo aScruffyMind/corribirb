@@ -26,7 +26,8 @@
                     </div>
                     <!-- Table of feedings -->
                     <div id="feedings" class="column table">
-                        <div class="column day">
+                    <!-- insert document fragment here, as child of feedings table-->
+                        <!-- <div class="column day">
                             <div class="data-header table-data">
                                 <span class="time">4/18/2021</span>
                                 <span class="value">Total: 32.0 mls</span>
@@ -85,7 +86,7 @@
                                 <span class="time">9:54 PM</span>
                                 <span class="value">8.3 mls</span>
                             </div>
-                        </div>
+                        </div> -->
                         
                     </div>
                     <!-- Table of weights -->
@@ -120,8 +121,8 @@
 
 
     <script>
-        const dbfeedings = <%- JSON.stringify(dbfeedings)%>;
-        const dbweights = <%- JSON.stringify(dbweights)%>;
+        const feedingData = <%- JSON.stringify(feedingData)%>;
+        const weightData = <%- JSON.stringify(weightData)%>;
 
     </script>
 
