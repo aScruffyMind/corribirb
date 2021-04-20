@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corribirb Stats</title>
+    <title>Corribirb Feeding Tracker</title>
     <link rel="stylesheet" href="css/styles.css">
     <script defer src="js/stats.js"></script>
 </head>
@@ -13,8 +13,119 @@
 <body class="background">
     <div class="container">
         <div class="column full-page">
-           <h1>Stats coming soon!</h1>
+            <div class="row">
+                <header>
+                    <img src="img/corri-logo.png" alt="">
+                </header>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <div class="row">
+                        <div class="tab tab-selected">Feedings</div>
+                        <div class="tab">Weights</div>
+                    </div>
+                    <!-- Table of feedings -->
+                    <div id="feedings" class="column table">
+                    <!-- insert document fragment here, as child of feedings table-->
+                        <!-- <div class="column day">
+                            <div class="data-header table-data">
+                                <span class="time">4/18/2021</span>
+                                <span class="value">Total: 32.0 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">6:03 AM</span>
+                                <span class="value">6.7 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">9:18 AM</span>
+                                <span class="value">3.2 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">12:32 PM</span>
+                                <span class="value">8.3 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">3:42 PM</span>
+                                <span class="value">4 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">7:03 PM</span>
+                                <span class="value">6.2 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">10:29 PM</span>
+                                <span class="value">3.6 mls</span>
+                            </div>
+                        </div>
+                        <div class="column day">
+                            <div class="data-header table-data">
+                                <span class="time">4/17/2021</span>
+                                <span class="value">Total: 35.6 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">5:48 AM</span>
+                                <span class="value">3.2 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">9:07 AM</span>
+                                <span class="value">8.6 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">12:04 PM</span>
+                                <span class="value">4.3 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">3:18 PM</span>
+                                <span class="value">6.2 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">6:33 PM</span>
+                                <span class="value">5.0 mls</span>
+                            </div>
+                            <div class="row table-data">
+                                <span class="time">9:54 PM</span>
+                                <span class="value">8.3 mls</span>
+                            </div>
+                        </div> -->
+                        
+                    </div>
+                    <!-- Table of weights -->
+                    <div id="weights" class="column table hidden">
+                        <div class="row table-data">
+                            <span class="time">4/18/2021</span>
+                            <span class="value">63 g</span>
+                        </div>
+                        <div class="row table-data">
+                            <span class="time">4/17/2021</span>
+                            <span class="value">61 g</span>
+                        </div>
+                        <div class="row table-data">
+                            <span class="time">4/16/2021</span>
+                            <span class="value">59 g</span>
+                        </div>
+                        <div class="row table-data">
+                            <span class="time">4/15/2021</span>
+                            <span class="value">62 g</span>
+                        </div>
+                    </div>
+                    <div class="row table-footer">
+                        <span id="footer-text">[populated dynamically]</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <footer class="row">&copy;2021 Scruffy Minds Web Design</footer>
+            </div>
         </div>
     </div>
+
+
+    <script>
+        const feedingData = <%- JSON.stringify(feedingData)%>;
+        const weightData = <%- JSON.stringify(weightData)%>;
+
+    </script>
+
 </body>
+
 </html>
