@@ -129,7 +129,7 @@ function createWeightsTable(weightData) {
         const weightB = b.timestamp;
         if (weightA > weightB) return Number(1);
         else if (weightA < weightB) return Number(-1);
-    });
+    }).reverse();
 
     function getAverageWeight(weightData) {
         const weights = weightData.map((data, index, arr) => {
