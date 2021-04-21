@@ -50,7 +50,7 @@ function createFeedingsTable(feedingData) {
             let countingDate = (new Date(today));
             countingDate = (new Date(countingDate.setDate(today.getDate() - i)));
             let fromDate = (new Date(countingDate.setHours(0, 0, 0, 0))).toISOString();
-            let toDate = (new Date(countingDate.setHours(22, 59, 59))).toISOString();
+            let toDate = (new Date(countingDate.setHours(23, 59, 59))).toISOString();
 
             const forToday = feedingData.filter(function (x, i) {
                 return (x.timestamp > fromDate && x.timestamp < toDate);
