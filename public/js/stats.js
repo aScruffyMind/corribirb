@@ -65,7 +65,7 @@ function createFeedingsTable(feedingData) {
         day.forEach((x, i, a) => {
             tally += Number(day[i].mls);
         });
-        return tally;
+        return parseFloat(tally).toFixed(1);
     }
 
     feedingDays.forEach((day, index, arr) => {
