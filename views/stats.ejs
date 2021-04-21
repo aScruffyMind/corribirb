@@ -24,14 +24,15 @@
                         <div class="tab tab-selected">Feedings</div>
                         <div class="tab">Weights</div>
                     </div>
-                    <!-- Table of feedings -->
+
                     <div id="feedings" class="column table">
-                    <!-- insert document fragment here, as child of feedings table-->
+                    <!-- document fragment-->
                     </div>
-                    <!-- Table of weights -->
+                    
                     <div id="weights" class="column table hidden">
-                    <!-- insert document fragment here, as child of weights table-->
+                    <!-- document fragment-->
                     </div>
+                    
                     <div class="row table-footer">
                         <span id="footer-text"></span>
                     </div>
@@ -43,11 +44,9 @@
         </div>
     </div>
 
-
     <script>
         const feedingData = <%- JSON.stringify(feedingData)%>;
         const weightData = <%- JSON.stringify(weightData)%>;
-
     </script>
 
 </body>

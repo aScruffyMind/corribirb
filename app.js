@@ -17,22 +17,20 @@ app.use(express.static("public"));
 
 function mongo(state) {
     if (state === 'connect') {
-    mongoose.connect(mongoUrl, {
-            useUnifiedTopology: true,
-            useNewUrlParser: true
-        })
-        .then(() => {
-            console.log('connected to db!');
-        })
-        .catch((err) => {
-            console.log('something is wrong with db connection');
-        });
+        mongoose.connect(mongoUrl, {
+                useUnifiedTopology: true,
+                useNewUrlParser: true
+            })
+            .then(() => {
+                console.log('connected to db!');
+            })
+            .catch((err) => {
+                console.log('something is wrong with db connection');
+            });
     } else if (state === 'close') {
         mongoose.connection.close();
     }
 }
-
-// mongo('connect');
 
 const feedingSchema = new Schema({
     timestamp: Date,
@@ -48,10 +46,6 @@ const Feeding = mongoose.model('Feeding', feedingSchema);
 const Weight = mongoose.model('Weight', weightSchema);
 
 /********** ROUTES **********/
-app.get('/favicon.ico', function (req, res) {
-    console.log('Caught another favicon.ico!');
-});
-
 app.get('/', function (req, res) {
     res.render('home');
 });
@@ -67,7 +61,7 @@ app.route('/feeding')
         const feeding = new Feeding({
             mls: mls,
             timestamp: timestamp,
-        });   
+        });
         const title = 'Feeding Entry Saved';
         const message = `${mls}&nbsp;mls logged at <span id="timestamp">[timestamp]</span>.`;
         feeding.save((err) => {
@@ -83,51 +77,51 @@ app.route('/feeding')
     });
 
 app.route('/weight')
-.get(function (req, res) {
-    res.render('weight');
-})
-.post(function(req, res) {
-    mongo('connect');
-    const timestamp = new Date();
-    const grams = Number(req.body.weight);
-    const weight = new Weight({
-        weight: grams,
-        timestamp: timestamp
+    .get(function (req, res) {
+        res.render('weight');
+    })
+    .post(function (req, res) {
+        mongo('connect');
+        const timestamp = new Date();
+        const grams = Number(req.body.weight);
+        const weight = new Weight({
+            weight: grams,
+            timestamp: timestamp
+        });
+        const title = 'Weight Saved';
+        const message = `Weight of ${grams} g logged at <span id="timestamp">[timestamp]</span>.`;
+        weight.save((err) => {
+            if (!err) {
+                mongo('close');
+                res.render('success', {
+                    title: title,
+                    message: message,
+                    timestamp: timestamp
+                });
+            } else res.send('There was an error in saving to the database. Please use the back button and try again.');
+        });
     });
-    const title = 'Weight Saved';
-    const message = `Weight of ${grams} g logged at <span id="timestamp">[timestamp]</span>.`;
-    weight.save((err) => {
-        if (!err) {
-        mongo('close');
-            res.render('success', {
-                title: title,
-                message: message,
-                timestamp: timestamp
-            }); 
-        } else res.send('There was an error in saving to the database. Please use the back button and try again.');
-    });  
-});
 
 app.get('/stats', function (req, res) {
     mongo('connect')
     Feeding.find({}, function (err, foundFeedings) {
-        // console.log(foundFeedings);
-        Weight.find({}, function(err, foundWeights) {
-            // console.log(foundWeights);
+        Weight.find({}, function (err, foundWeights) {
             mongo('close');
             res.render('stats', {
                 feedingData: foundFeedings,
                 weightData: foundWeights
             });
         });
-
     });
-    
 });
 
 app.get('/success', function (req, res) {
     res.render('success');
-})
+});
+
+app.get('/favicon.ico', function (req, res) {
+    console.log('Caught another favicon.ico!');
+});
 
 let port = process.env.PORT;
 if (port == null || port == "") {

@@ -29,7 +29,7 @@ function toggleTabs() {
 function populateFooter(data) {
     const tabSelected = document.querySelector('.tab-selected');
     const footerText = document.getElementById('footer-text');
-    
+
     if (tabSelected.innerHTML === 'Feedings') {
         footerText.innerHTML = `Daily Avg: ${avgFeedings} mls`;
     } else if (tabSelected.innerHTML === 'Weights') {
@@ -65,7 +65,7 @@ function createFeedingsTable(feedingData) {
         day.forEach((x, i, a) => {
             tally += Number(day[i].mls);
         });
-        return parseFloat(tally).toFixed(1);
+        return Number(parseFloat(tally).toFixed(1));
     }
 
     feedingDays.forEach((day, index, arr) => {
@@ -78,7 +78,7 @@ function createFeedingsTable(feedingData) {
         const dayHeader = document.createElement('div');
         const dateSpan = document.createElement('span');
         const totalSpan = document.createElement('span');
-        dayColumn.classList.add('column', 'day');
+        dayColumn.classList.add('column');
         dayHeader.classList.add('data-header', 'table-data');
         dateSpan.classList.add('time');
         totalSpan.classList.add('value');
@@ -147,14 +147,14 @@ function createWeightsTable(weightData) {
         const dataRow = document.createElement('div');
         const timeSpan = document.createElement('span');
         const weightSpan = document.createElement('span');
-        dataRow.classList.add('row', 'table-data');
+        (index != 0 && index % 2 != 0) ? dataRow.classList.add('row', 'table-data'): dataRow.classList.add('row', 'table-data', 'alt-row');
         timeSpan.classList.add('time');
         timeSpan.innerText = timestamp.toLocaleDateString('en-US');
         weightSpan.classList.add('value');
         weightSpan.innerText = `${weightEntry.weight} g`;
         dataRow.appendChild(timeSpan);
         dataRow.appendChild(weightSpan);
-        weightsTable.appendChild(dataRow); 
+        weightsTable.appendChild(dataRow);
     });
     document.getElementById('weights').appendChild(weightsTable);
 }
