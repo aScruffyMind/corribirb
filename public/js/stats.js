@@ -1,14 +1,16 @@
 const tab = document.querySelectorAll('.tab');
 const table = document.querySelectorAll('.table');
 const today = new Date();
+let avgFeedings;
+let avgWeights;
 
+createFeedingsTable(feedingData);
+createWeightsTable(weightData);
 
 // add an event listener to each tab
 tab.forEach(function (x) {
     x.addEventListener('click', function () {
-        if (!x.classList.contains('tab-selected')) {
-            toggleTabs();
-        }
+        if (!x.classList.contains('tab-selected')) toggleTabs();
     });
 });
 
@@ -23,38 +25,17 @@ function toggleTabs() {
     populateFooter();
 }
 
-
 // populate the footer data based on selected tab
 function populateFooter(data) {
     const tabSelected = document.querySelector('.tab-selected');
     const footerText = document.getElementById('footer-text');
-
+    
     if (tabSelected.innerHTML === 'Feedings') {
-        footerText.innerHTML = `Daily Avg: ${data} mls`;
+        footerText.innerHTML = `Daily Avg: ${avgFeedings} mls`;
     } else if (tabSelected.innerHTML === 'Weights') {
-        footerText.innerHTML = `Avg Weight: 61.25 g`;
+        footerText.innerHTML = `Avg Weight: ${parseFloat(avgWeights).toFixed(1)} g`;
     }
 }
-
-
-
-
-/*
-
-Feedings
-1. Start with today's date, find items with matching date in the feedings array
-2. probably use .filter() to make a new array from step 1
-3. total up all the mls items, stash in a variable called totalMls
-4. Sort the filtered array by date/time, earliest first
-5. put together the row for this date in the Document Fragment
-6. Once all compiled, send Document Fragment to the DOM
-
-Weights
-1. sort array by date
-2. Nice to have: check for duplicates, only use the latest for a day
-3. compile it all into a document fragment
-4. write it to the DOM
-*/
 
 // create the Feedings table and insert it into the DOM
 function createFeedingsTable(feedingData) {
@@ -81,7 +62,7 @@ function createFeedingsTable(feedingData) {
 
     function getDayTotalMls(day) {
         let tally = 0;
-        const total = day.forEach((x, i, a) => {
+        day.forEach((x, i, a) => {
             tally += Number(day[i].mls);
         });
         return tally;
@@ -92,12 +73,13 @@ function createFeedingsTable(feedingData) {
         const dayTotalMlsString = `Total: ${dayTotalMls} mls`;
         dailyTotals.push(dayTotalMls);
         const currentDate = (new Date(day[0].timestamp)).toLocaleDateString('en-US');
+
         const dayColumn = document.createElement('div');
-        dayColumn.classList.add('column', 'day');
         const dayHeader = document.createElement('div');
-        dayHeader.classList.add('data-header', 'table-data');
         const dateSpan = document.createElement('span');
         const totalSpan = document.createElement('span');
+        dayColumn.classList.add('column', 'day');
+        dayHeader.classList.add('data-header', 'table-data');
         dateSpan.classList.add('time');
         totalSpan.classList.add('value');
         dateSpan.innerText = currentDate;
@@ -108,35 +90,71 @@ function createFeedingsTable(feedingData) {
 
         day.forEach((time, index, arr) => {
             const currentTimestamp = (new Date(day[index].timestamp)).toLocaleTimeString('en-us', {
-                hour: 'numeric', minute: '2-digit'
+                hour: 'numeric',
+                minute: '2-digit'
             });
             const currentMls = time.mls;
             const timeRow = document.createElement('div');
-            timeRow.classList.add('row', 'table-data');
             const timeSpan = document.createElement('span');
             const mlsSpan = document.createElement('span');
+            timeRow.classList.add('row', 'table-data');
             timeSpan.classList.add('time');
             mlsSpan.classList.add('value');
             timeSpan.innerText = currentTimestamp;
-            mlsSpan.innerText = currentMls;
+            mlsSpan.innerText = `${parseFloat(currentMls).toFixed(1)} mls`;
             timeRow.appendChild(timeSpan);
             timeRow.appendChild(mlsSpan);
             dayColumn.appendChild(timeRow);
         });
-
         feedingTable.appendChild(dayColumn);
         document.getElementById('feedings').appendChild(feedingTable);
-        let dailyAverage = parseFloat((dailyTotals.reduce((a, b) => {
-            return a + b
-        }, 0)) / dailyTotals.length).toFixed(2);
-        populateFooter(dailyAverage);
     });
 
-    
+    const dailyTotalsMinusToday = dailyTotals;
+    dailyTotalsMinusToday.shift();
+
+    const dailyAverage = parseFloat((dailyTotalsMinusToday.reduce((a, b) => {
+        return a + b
+    }, 0)) / dailyTotalsMinusToday.length).toFixed(2);
+    avgFeedings = dailyAverage;
+    populateFooter(avgFeedings);
 }
 
+function createWeightsTable(weightData) {
+    const weightsTable = new DocumentFragment();
 
+    // sort data by date
+    weightData.sort(function compare(a, b) {
+        const weightA = a.timestamp;
+        const weightB = b.timestamp;
+        if (weightA > weightB) return Number(1);
+        else if (weightA < weightB) return Number(-1);
+    });
 
+    function getAverageWeight(weightData) {
+        const weights = weightData.map((data, index, arr) => {
+            return data.weight;
+        });
+        return (parseFloat((weights.reduce((a, b) => {
+            return a + b
+        }, 0)))) / weights.length;
+    }
 
+    avgWeights = getAverageWeight(weightData)
 
-createFeedingsTable(feedingData);
+    weightData.forEach((weightEntry, index, arr) => {
+        const timestamp = new Date(weightEntry.timestamp);
+        const dataRow = document.createElement('div');
+        const timeSpan = document.createElement('span');
+        const weightSpan = document.createElement('span');
+        dataRow.classList.add('row', 'table-data');
+        timeSpan.classList.add('time');
+        timeSpan.innerText = timestamp.toLocaleDateString('en-US');
+        weightSpan.classList.add('value');
+        weightSpan.innerText = `${weightEntry.weight} g`;
+        dataRow.appendChild(timeSpan);
+        dataRow.appendChild(weightSpan);
+        weightsTable.appendChild(dataRow); 
+    });
+    document.getElementById('weights').appendChild(weightsTable);
+}
