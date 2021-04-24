@@ -98,6 +98,7 @@ function createFeedingsTable(feedingData) {
             const timeSpan = document.createElement('span');
             const mlsSpan = document.createElement('span');
             timeRow.classList.add('row', 'table-data');
+            if (index != 0 && index % 2 != 0) timeRow.classList.add('alt-row')
             timeSpan.classList.add('time');
             mlsSpan.classList.add('value');
             timeSpan.innerText = currentTimestamp;
