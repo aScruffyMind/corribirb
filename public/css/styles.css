@@ -89,7 +89,7 @@ textarea {
 }
 
 .alt-row {
-    background-color: #489b4836;
+    background-color: #489b4824;
 }
 
 .background {
@@ -281,7 +281,7 @@ textarea {
 
 .table-data:last-child {
     border: 0;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .table-footer {
