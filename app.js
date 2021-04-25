@@ -125,7 +125,7 @@ app.get('/favicon.ico', function (req, res) {
 
 let port = process.env.PORT;
 if (port == null || port == "") {
-    port = 3821;
+    port = 3822;
 }
 
 app.listen(port, function () {
