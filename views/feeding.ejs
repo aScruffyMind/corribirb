@@ -25,8 +25,9 @@
             <p id="plus" class="add">+</p>
         </div>
 
-        <div class="row">
+        <div class="column">
             <span id="done-button" class="button">Done</span>
+            <div id="back-button">Go back</div>
         </div>
 
         <div class="tenths-section hidden">
@@ -54,7 +55,7 @@
             </div>
             <div class="row">
                 <form id="logfeeding" action="/feeding" method="POST">
-                    <input id="mls" name="finaltotal" type="hidden" value="5">
+                    <input id="mls" name="finaltotal" type="hidden" value="0">
                     <div id="submit-button" class="done button">Save <span id="total"></span> mls</div>
                 </form>
             </div>

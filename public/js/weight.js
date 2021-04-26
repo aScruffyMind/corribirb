@@ -3,6 +3,7 @@ const tenthsButtons = d.querySelectorAll('.tenth-button');
 const allWeights = d.querySelectorAll('.all-weight');
 const submitButton = d.getElementById('submit-button');
 const logWeight = d.getElementById('logweight');
+const backBtn = d.getElementById('back-button');
 let weight = '0';
 
 function displayWeight(weight) {
@@ -34,5 +35,8 @@ tenthsButtons.forEach((btn) => {
 });
 
 submitButton.addEventListener('click', saveIt);
+backBtn.addEventListener('click', function() {
+    window.location.href = '/';
+})
 
 displayWeight(weight);

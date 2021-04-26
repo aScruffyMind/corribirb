@@ -61,6 +61,11 @@ textarea {
     width: 70%;
 }
 
+#back-button {
+    margin: 10px auto;
+    font-size: 120%;
+}
+
 #count-button {
     background-color: red;
     border: 1px solid red;
@@ -84,7 +89,7 @@ textarea {
 }
 
 #submit-button {
-    margin-bottom: 15px;
+    /* margin-bottom: 15px; */
     width: 95%;
 }
 
@@ -106,7 +111,7 @@ textarea {
     border-radius: 100px;
     color: #222;
     font-size: 130%;
-    margin: 10px auto 30px;
+    margin: 10px auto 0;
     padding: 10px 60px;
     text-align: center;
 }
@@ -159,6 +164,10 @@ textarea {
     padding: 3px;
     text-shadow: 1px 1px 1px #1d3e1d7c;
     width: 100%;
+}
+
+.done {
+    margin-bottom: 15px;
 }
 
 .fenster {
