@@ -10,6 +10,7 @@ const plus = d.getElementById('plus');
 const minus = d.getElementById('minus');
 const doneButton = d.getElementById('done-button');
 const finalTotal = d.getElementById('mls');
+const backBtn = d.getElementById('back-button');
 
 const logFeeding = d.getElementById('logfeeding');
 
@@ -20,9 +21,15 @@ const count = (() => {
         if (operator === 'add') total++;
         else if (operator === 'subtract' && total != 0) total--;
         tally.innerHTML = total;
+        recordFinalTotal(total)
         return total;
     };
 })();
+
+function recordFinalTotal(total) {
+    finalTotal.innerText = total;
+    finalTotal.value = finalTotal.innerText;
+}
 
 function doneFeeding() {
     totalMls.innerHTML = count();
@@ -33,6 +40,7 @@ function doneFeeding() {
 function goBack() {
     counter.classList.toggle('hidden');
     tenths.classList.toggle('hidden');
+    document.querySelector('.mls-selected').classList.remove('mls-selected');
 }
 
 function saveIt() {
@@ -52,8 +60,7 @@ tenthsButtons.forEach(num => {
             this.classList.add('mls-selected');
         } else this.classList.add('mls-selected');
         totalMls.innerHTML = `${count()}${tenths}`;
-        finalTotal.value = `${count()}${tenths}`
-
+        recordFinalTotal(Number(`${count()}${tenths}`));
     });
 });
 
@@ -64,3 +71,6 @@ minus.addEventListener('click', count);
 document.getElementById('done-button').addEventListener('click', doneFeeding);
 submitButton.addEventListener('click', saveIt);
 closeButton.addEventListener('click', goBack);
+backBtn.addEventListener('click', function() {
+    window.location.href = '/';
+})

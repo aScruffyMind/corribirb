@@ -1,5 +1,6 @@
 const tab = document.querySelectorAll('.tab');
 const table = document.querySelectorAll('.table');
+const backBtn = document.getElementById('back-button');
 const today = new Date();
 let avgFeedings;
 let avgWeights;
@@ -159,3 +160,7 @@ function createWeightsTable(weightData) {
     });
     document.getElementById('weights').appendChild(weightsTable);
 }
+
+backBtn.addEventListener('click', () => {
+    window.location.href = '/';
+});
